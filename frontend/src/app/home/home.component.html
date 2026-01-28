@@ -1,0 +1,118 @@
+<div class="home-container">
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-content">
+      <a href="/" class="logo">YourName</a>
+      <div class="nav-links">
+        <a routerLink="/blog" class="nav-link">Daily Log</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <div class="hero-badge">Available for opportunities</div>
+      <h1 class="hero-title">
+        Building digital
+        <br/>
+        <span class="text-gradient">experiences</span>
+      </h1>
+      <p class="hero-description">
+        Full-stack developer specializing in TypeScript, Angular, and NestJS.
+        Passionate about creating clean, efficient, and user-centric applications.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:your@email.com" class="btn-primary">Get in touch</a>
+        <a routerLink="/blog" class="btn-secondary">View daily log</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section" *ngIf="experiences().length > 0">
+    <div class="section-header slide-in">
+      <h2>Experience</h2>
+      <div class="divider"></div>
+    </div>
+    
+    <div class="experience-list">
+      <div *ngFor="let exp of experiences(); let i = index" 
+           class="experience-card slide-in"
+           [style.animation-delay.ms]="i * 100">
+        <div class="exp-timeline">
+          <div class="exp-dot"></div>
+          <div class="exp-line" *ngIf="i < experiences().length - 1"></div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-header">
+            <div>
+              <h3 class="exp-position">{{ exp.position }}</h3>
+              <p class="exp-company">{{ exp.company }}</p>
+            </div>
+            <div class="exp-date">
+              <span class="exp-current" *ngIf="exp.current">Current</span>
+              {{ formatDate(exp.startDate) }} - {{ exp.current ? 'Present' : formatDate(exp.endDate!) }}
+            </div>
+          </div>
+          <p class="exp-description">{{ exp.description }}</p>
+          <div class="exp-technologies">
+            <span *ngFor="let tech of exp.technologies" class="tech-tag">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section" *ngIf="projects().length > 0">
+    <div class="section-header slide-in">
+      <h2>Projects</h2>
+      <div class="divider"></div>
+    </div>
+    
+    <div class="projects-grid">
+      <div *ngFor="let project of projects(); let i = index" 
+           class="project-card slide-in"
+           [style.animation-delay.ms]="i * 100">
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <span class="project-featured" *ngIf="project.featured">Featured</span>
+          </div>
+          <p class="project-description">{{ project.description }}</p>
+          <div class="project-technologies">
+            <span *ngFor="let tech of project.technologies" class="tech-tag">
+              {{ tech }}
+            </span>
+          </div>
+          <div class="project-links">
+            <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" class="project-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              Code
+            </a>
+            <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" class="project-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              Live
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; {{ currentYear }} YourName. Built with Angular & NestJS.</p>
+    </div>
+  </footer>
+</div>
