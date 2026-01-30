@@ -59,3 +59,5 @@ eslint.config.mjs
 README.md
 nest-cli.json
 jest-e2e.json
+
+/generated/prisma
