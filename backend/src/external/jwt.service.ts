@@ -12,7 +12,6 @@ constructor() {
     });
   }
     async validate(payload: any) {
-    // This is what gets attached to 'req.user'
     return { userId: payload.sub, email: payload.email, role: payload.role };
     }
 }

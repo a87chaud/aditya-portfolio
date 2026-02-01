@@ -6,11 +6,13 @@ import { ConfigModule } from '@nestjs/config';
 import { ExperiencesModule } from './experiences/experiences.module.js';
 import { ExperiencesService } from './experiences/experiences.service.js';
 import { ExperiencesController } from './experiences/experiences.controller.js';
+import { PrismaModule } from './external/prisma.module.js';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }),
      AuthModule,
-     ExperiencesModule],
+     ExperiencesModule,
+    PrismaModule],
   controllers: [AppController, ExperiencesController],
   providers: [AppService, ExperiencesService],
 })
