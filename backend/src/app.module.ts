@@ -7,12 +7,18 @@ import { ExperiencesModule } from './experiences/experiences.module.js';
 import { ExperiencesService } from './experiences/experiences.service.js';
 import { ExperiencesController } from './experiences/experiences.controller.js';
 import { PrismaModule } from './external/prisma.module.js';
+import { ProjectsModule } from './projects/projects.module.js';
+import { BlogModule } from './blog/blog.module.js';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }),
-     AuthModule,
-     ExperiencesModule,
-    PrismaModule],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    AuthModule,
+    ExperiencesModule,
+    PrismaModule,
+    ProjectsModule,
+    BlogModule,
+  ],
   controllers: [AppController, ExperiencesController],
   providers: [AppService, ExperiencesService],
 })
