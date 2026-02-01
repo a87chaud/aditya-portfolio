@@ -5,6 +5,7 @@ import { Experience, ExperienceService } from '../services/experience.service';
 import { Project, ProjectsService } from '../services/projects.service';
 import { BlogPost, BlogService } from '../services/blogs.service';
 import { AdminService } from '../services/admin.service';
+import { Router } from '@angular/router';
 
 type ViewMode = 'dashboard' | 'experience' | 'projects' | 'blog';
 type FormMode = 'add' | 'edit';
@@ -21,6 +22,7 @@ export class AdminDashboard implements OnInit {
   private projectService = inject(ProjectsService);
   private blogService = inject(BlogService);
   private adminService = inject(AdminService);
+  private router = inject(Router);
 
   currentView: ViewMode = 'dashboard';
 
@@ -32,7 +34,9 @@ export class AdminDashboard implements OnInit {
   projects: Signal<Project[]> = this.projectService.projects;
 
   ngOnInit(): void {
+    this.projectService.getAll();
     this.experienceService.getAll();
+    this.blogService.getAll();
   }
   // projects = toSignal(
   //     this.projectService.getAll(),
@@ -241,5 +245,6 @@ export class AdminDashboard implements OnInit {
 
   logout(): void {
     this.adminService.logout();
+    this.router.navigate(['']);
   }
 }

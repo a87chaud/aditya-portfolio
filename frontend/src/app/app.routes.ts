@@ -15,4 +15,16 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () => import('./admin-dashboard/admin-dashboard').then((m) => m.AdminDashboard),
   },
+  {
+    path: 'blog',
+    loadComponent: () => import('./blog/blog').then((i) => i.Blog),
+  },
+  {
+    path: 'blog/:id',
+    loadComponent: () => import('./blog-post/blog-post').then((i) => i.BlogPostComponent),
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

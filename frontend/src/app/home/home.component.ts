@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.experienceService.getAll();
+    this.projectService.getAll();
   }
 
   formatDate(dateStr: string): string {

@@ -24,7 +24,6 @@ export class AdminService {
   login(creds: LoginDto): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.BASE_URL}/login`, creds).pipe(
       tap((res) => {
-        console.log('token: ', res.access_token);
         localStorage.setItem('access_token', res.access_token);
       }),
     );

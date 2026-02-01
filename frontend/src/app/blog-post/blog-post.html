@@ -1,0 +1,46 @@
+<div class="post-container">
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-content">
+      <a routerLink="/" class="logo">Aditya Chaudhary</a>
+      <div class="nav-links">
+        <a routerLink="/blog" class="nav-link">← Back to Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Loading State -->
+  <div *ngIf="loading()" class="loading">
+    <div class="spinner"></div>
+    <p>Loading post...</p>
+  </div>
+
+  <!-- Post Content -->
+  <article *ngIf="!loading() && post()" class="post fade-in">
+    <header class="post-header">
+      <time class="post-date">{{ formatDate(post().createdAt!) }}</time>
+      <h1 class="post-title">{{ post().title }}</h1>
+      <div class="post-tags" *ngIf="post().tags.length > 0">
+        <span *ngFor="let tag of post().tags" class="tag">{{ tag }}</span>
+      </div>
+    </header>
+
+    <div class="post-body">
+      <p [innerHTML]="post().content" style="white-space: pre-wrap"></p>
+    </div>
+  </article>
+
+  <!-- Not Found -->
+  <div *ngIf="!loading() && !post()" class="not-found">
+    <h2>Post not found</h2>
+    <p>The post you're looking for doesn't exist or has been removed.</p>
+    <a routerLink="/blog" class="btn-primary">Back to Blog</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; {{ currentYear }} YourName. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

@@ -10,13 +10,13 @@ import { JwtService } from '../external/jwt.service.js';
 @Module({
   imports: [
     // Ensure ConfigModule is here to load the .env file
-    ConfigModule.forRoot({ isGlobal: true }), 
+    ConfigModule.forRoot({ isGlobal: true }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '7d' },
+        signOptions: { expiresIn: '1hr' },
       }),
     }),
   ],

@@ -17,7 +17,7 @@ export interface BlogPost {
   providedIn: 'root',
 })
 export class BlogService {
-  private BASE_URL = 'http://localhost:3000/posts';
+  private BASE_URL = 'http://localhost:3000/blog';
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +26,10 @@ export class BlogService {
 
   getAll() {
     this.http.get<BlogPost[]>(this.BASE_URL).subscribe((posts) => this.posts$.next(posts));
+  }
+
+  getById(id: string) {
+    this.http.get<BlogPost>(`${this.BASE_URL}/${id}`).subscribe((post) => this.posts$.next([post]));
   }
 
   create(data: Partial<BlogPost>) {
