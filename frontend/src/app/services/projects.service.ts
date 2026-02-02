@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Project {
   id?: string;
@@ -20,7 +21,7 @@ export interface Project {
   providedIn: 'root',
 })
 export class ProjectsService {
-  private BASE_URL = 'http://localhost:3000/projects';
+  private BASE_URL = `${environment.apiUrl}/projects`;
 
   constructor(private http: HttpClient) {}
 

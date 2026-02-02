@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface BlogPost {
   id?: string;
@@ -17,7 +18,7 @@ export interface BlogPost {
   providedIn: 'root',
 })
 export class BlogService {
-  private BASE_URL = 'http://localhost:3000/blog';
+  private BASE_URL = `${environment.apiUrl}/blog`;
 
   constructor(private http: HttpClient) {}
 

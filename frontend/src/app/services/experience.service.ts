@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface Experience {
   id?: string;
@@ -21,7 +22,8 @@ export interface Experience {
 
 // I realised after I should have made an abstract class but lazy
 export class ExperienceService {
-  private BASE_URL = 'http://localhost:3000/experiences';
+  private BASE_URL = `${environment.apiUrl}/experiences`;
+
   constructor(private http: HttpClient) {}
   private readonly experiences$ = new BehaviorSubject<Experience[]>([]);
   readonly experiences = toSignal(this.experiences$, { initialValue: [] });

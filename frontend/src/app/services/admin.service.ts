@@ -2,6 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 export interface LoginDto {
   email: string;
@@ -19,7 +20,7 @@ export class AdminService {
     private http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
-  private BASE_URL = 'http://localhost:3000/auth';
+  private BASE_URL = `${environment.apiUrl}/auth`;
 
   login(creds: LoginDto): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.BASE_URL}/login`, creds).pipe(
@@ -31,7 +32,7 @@ export class AdminService {
 
   getToken(): string | null {
     if (!isPlatformBrowser(this.platformId)) {
-      return null; // SSR: no token
+      return null;
     }
     return localStorage.getItem('access_token');
   }
