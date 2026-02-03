@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend-url.amazonaws.com', // We'll update this later
+  apiUrl: 'https://nj9jstbz8v.us-east-2.awsapprunner.com/',
 };
