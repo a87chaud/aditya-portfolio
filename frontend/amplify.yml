@@ -1,0 +1,22 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Use the same npm version as your local machine
+        - npm install -g npm@10.9.2
+        # Move into frontend folder if needed
+        - cd frontend
+        # Use npm ci to install exactly what's in package-lock.json
+        - npm ci
+    build:
+      commands:
+        - cd frontend
+        - npm run build
+  artifacts:
+    baseDirectory: frontend/dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - frontend/node_modules/**/*
