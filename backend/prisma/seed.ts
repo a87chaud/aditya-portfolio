@@ -2,7 +2,7 @@
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import pg from 'pg';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import 'dotenv/config';
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
@@ -12,10 +12,11 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   const password = process.env.ADMIN_PASSWORD!;
   const hashedPassword = await bcrypt.hash(password, 10);
-
   const admin = await prisma.user.upsert({
     where: { email: 'a87chaud@uwaterloo.ca' },
-    update: {},
+    update: {
+      password: hashedPassword,
+    },
     create: {
       email: 'a87chaud@uwaterloo.ca',
       password: hashedPassword,
@@ -25,7 +26,7 @@ async function main() {
     },
   });
 
-  console.log(' Admin user created:', admin);
+  console.log(' Admin user created:', admin.email);
 }
 
 main()

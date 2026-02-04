@@ -57,4 +57,5 @@ COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/clie
 EXPOSE 3000
 
 # 5. Run migrations and start app
-CMD ["sh", "-c", "npx prisma migrate deploy --schema ./prisma/schema.prisma --config ./prisma.config.ts && node dist/src/main.js"]
+# CMD ["sh", "-c", "npx prisma migrate deploy --schema ./prisma/schema.prisma --config ./prisma.config.ts && node dist/src/main.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy --schema ./prisma/schema.prisma --config ./prisma.config.ts && npx prisma db seed && node dist/src/main.js"]
