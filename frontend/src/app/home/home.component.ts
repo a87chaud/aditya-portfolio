@@ -20,8 +20,10 @@ export class HomeComponent implements OnInit {
   experiences: Signal<Experience[]> = this.experienceService.experiences;
   projects: Signal<Project[]> = this.projectService.projects;
   loading = true;
-
   currentYear = new Date().getFullYear();
+
+  // Contact modal state
+  isContactModalOpen = false;
 
   ngOnInit() {
     this.experienceService.getAll();
@@ -31,5 +33,15 @@ export class HomeComponent implements OnInit {
   formatDate(dateStr: string): string {
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+  }
+
+  openContactModal(): void {
+    this.isContactModalOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeContactModal(): void {
+    this.isContactModalOpen = false;
+    document.body.style.overflow = 'auto';
   }
 }

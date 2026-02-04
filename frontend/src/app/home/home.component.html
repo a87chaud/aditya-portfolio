@@ -2,44 +2,116 @@
   <!-- Navigation -->
   <nav class="nav">
     <div class="nav-content">
-      <a href="/" class="logo">YourName</a>
+      <a href="/" class="logo">Aditya Chaudhary</a>
       <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
         <a routerLink="/blog" class="nav-link">Daily Log</a>
+        <a href="mailto:a87chaud@uwaterloo.ca" class="nav-link-cta">Contact me</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="about">
+    <!-- Background effects -->
+    <div class="pipeline-flow"></div>
+
     <div class="hero-content fade-in">
-      <div class="hero-badge">Available for opportunities</div>
-      <h1 class="hero-title">
-        Building digital
-        <br/>
-        <span class="text-gradient">experiences</span>
-      </h1>
+      <div class="terminal-header">
+        <span class="prompt">~$</span>
+        <span class="command">Computer Engineer from the Univeristy of Waterloo</span>
+        <span class="cursor"></span>
+      </div>
+
+      <h1 class="hero-title">Aditya Chaudhary</h1>
+
+      <div class="role-container">
+        <span class="code-comment">// Backend Engineer</span>
+      </div>
+
       <p class="hero-description">
-        Full-stack developer specializing in TypeScript, Angular, and NestJS.
-        Passionate about creating clean, efficient, and user-centric applications.
+        Backend & Infrastructure Engineer building cloud-native pipelines and distributed systems
+        for real-time, data-intensive products
+        <br />
+        <span class="subtitle">Designing backend systems that scale from idea to millions</span>
       </p>
+
+      <div class="status-bar">
+        <div class="status-item">
+          <span class="status-dot"></span>
+          <span>Open for opportunities</span>
+        </div>
+      </div>
+
       <div class="hero-cta">
-        <a href="mailto:your@email.com" class="btn-primary">Get in touch</a>
-        <a routerLink="/blog" class="btn-secondary">View daily log</a>
+        <button class="btn-primary" (click)="openContactModal()">
+          <span class="btn-icon">→</span>
+          Get in touch
+        </button>
+        <a href="/Aditya_Resume_FULLTIME_BE.pdf" download class="btn-secondary">
+          Download Resume
+          <span class="btn-arrow">↓</span>
+        </a>
+        <a routerLink="/blog" class="btn-secondary">
+          View daily log
+          <span class="btn-arrow">↗</span>
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- Contact Modal -->
+  <div class="modal-overlay" *ngIf="isContactModalOpen" (click)="closeContactModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeContactModal()">&times;</button>
+      <h2 class="modal-title">Get in Touch</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-label">Email</div>
+          <a href="mailto:a87chaud@uwaterloo.ca" class="contact-value">a87chaud@uwaterloo.ca</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Phone</div>
+          <a href="tel:+15197310516" class="contact-value">+1 (519) 731-0516</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Waterloo, ON</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">LinkedIn</div>
+          <a
+            href="https://www.linkedin.com/in/aditya-chaudhary-7331a5179/"
+            target="_blank"
+            class="contact-value"
+            >https://www.linkedin.com/in/aditya-chaudhary-7331a5179/</a
+          >
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">GitHub</div>
+          <a href="https://github.com/a87chaud" target="_blank" class="contact-value"
+            >github.com/a87chaud</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Experience Section -->
-  <section class="section" *ngIf="experiences().length > 0">
+  <section class="section" id="experience" *ngIf="experiences().length > 0">
     <div class="section-header slide-in">
-      <h2>Experience</h2>
+      <h2>Work Experience</h2>
       <div class="divider"></div>
     </div>
-    
+
     <div class="experience-list">
-      <div *ngFor="let exp of experiences(); let i = index" 
-           class="experience-card slide-in"
-           [style.animation-delay.ms]="i * 100">
+      <div
+        *ngFor="let exp of experiences(); let i = index"
+        class="experience-card slide-in"
+        [style.animation-delay.ms]="i * 100"
+      >
         <div class="exp-timeline">
           <div class="exp-dot"></div>
           <div class="exp-line" *ngIf="i < experiences().length - 1"></div>
@@ -52,7 +124,8 @@
             </div>
             <div class="exp-date">
               <span class="exp-current" *ngIf="exp.current">Current</span>
-              {{ formatDate(exp.startDate) }} - {{ exp.current ? 'Present' : formatDate(exp.endDate!) }}
+              {{ formatDate(exp.startDate) }} -
+              {{ exp.current ? 'Present' : formatDate(exp.endDate!) }}
             </div>
           </div>
           <p class="exp-description">{{ exp.description }}</p>
@@ -67,16 +140,18 @@
   </section>
 
   <!-- Projects Section -->
-  <section class="section" *ngIf="projects().length > 0">
+  <section class="section" id="projects" *ngIf="projects().length > 0">
     <div class="section-header slide-in">
       <h2>Projects</h2>
       <div class="divider"></div>
     </div>
-    
+
     <div class="projects-grid">
-      <div *ngFor="let project of projects(); let i = index" 
-           class="project-card slide-in"
-           [style.animation-delay.ms]="i * 100">
+      <div
+        *ngFor="let project of projects(); let i = index"
+        class="project-card slide-in"
+        [style.animation-delay.ms]="i * 100"
+      >
         <div class="project-content">
           <div class="project-header">
             <h3 class="project-title">{{ project.title }}</h3>
@@ -89,14 +164,40 @@
             </span>
           </div>
           <div class="project-links">
-            <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" class="project-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            <a
+              *ngIf="project.githubUrl"
+              [href]="project.githubUrl"
+              target="_blank"
+              class="project-link"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                ></path>
               </svg>
               Code
             </a>
-            <a *ngIf="project.liveUrl" [href]="project.liveUrl" target="_blank" class="project-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <a
+              *ngIf="project.liveUrl"
+              [href]="project.liveUrl"
+              target="_blank"
+              class="project-link"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -112,7 +213,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <p>&copy; {{ currentYear }} YourName. Built with Angular & NestJS.</p>
+      <p>&copy; {{ currentYear }} Aditya Chaudhary. Built with Angular & NestJS.</p>
     </div>
   </footer>
 </div>
